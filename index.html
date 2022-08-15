@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nurul Dwi Pajriah</title>
+    <script src="https://unpkg.com/vue@3"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <link
+    href="https://unpkg.com/@material-tailwind/html@latest/styles/material-tailwind.css"
+    rel="stylesheet"
+  />
+  <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+  />
+  <link 
+      rel="stylesheet" 
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" 
+      integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" 
+      crossorigin="anonymous"/>
+</head>
+<body class="">
+<div id="app">
+
+    <div
+    class="min-h-screen p-10 pt-32 h-100"
+    >
+      <nav class="navbar w-full bg-white">
+          <div class="container-lg px-0">
+              <div class="flex w-full items-center">
+              <a class="nav-brand mr-auto ml-0" href="#">Nurul Dwi Pajriah</a>
+              <button
+                  navbar-trigger=""
+                  class="navbar-trigger ml-auto mr-0 mb-0 lg:hidden xl:hidden"
+                  type="button"
+                  aria-controls="navigation"
+                  aria-expanded="false"
+                  aria-label="Toggle navigation"
+              >
+                  <span class="navbar-trigger-icon">
+                  <span bar1="" class="navbar-trigger-bar mt-1"
+                      ><span class="hidden origin-[10%_10%] rotate-45"></span
+                  ></span>
+                  <span bar2="" class="bar2 navbar-trigger-bar mt-2"></span>
+                  <span bar3="" class="bar3 navbar-trigger-bar mt-2"
+                      ><span
+                      class="mt-mt-[0.4375rem] hidden origin-[10%_90%] -rotate-45"
+                      ></span
+                  ></span>
+                  </span>
+              </button>
+              </div>
+              <div class="collapse navbar-collapse" navbar-menu="">
+              <ul class="navbar-nav">
+                  <li>
+                      <a class="nav-link" href="https://github.com/8Nuruuuldp">
+                          <i class="fab fa-github mr-2 text-base opacity-60"></i>
+                          <span>Github</span>
+                      </a>
+                  </li>
+              </ul>
+              </div>
+          </div>
+      </nav>
+
+
+<div class="flex flex-col mt-5">
+    <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+        <div class="py-4 inline-block min-w-full sm:px-6 lg:px-8">
+            <div class="overflow-hidden">
+            
+                    <table class="min-w-full text-center">
+                        <thead class="border-b bg-gray-800">
+                            <tr>
+                                <th scope="col" class="text-sm font-medium text-white px-6 py-4">
+                                    Name</th>
+                                <th scope="col" class="text-sm font-medium text-white px-6 py-4">Company</th>
+                                <th scope="col" class="text-sm font-medium text-white px-6 py-4">Year</th>
+                                <th scope="col" class="text-sm font-medium text-white px-6 py-4">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="bg-white border-b">
+                                <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                    <ul v-for="(snack, index) in snack.list" key="index">
+                                        <li> 
+                                            <span>
+                                                {{snack.name}} 
+                                            </span>
+                                        </li>
+                                    </ul>
+                                </td>
+                                <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                    <ul v-for="(snack, index) in snack.list" key="index">
+                                        <li> 
+                                            <span>
+                                                {{snack.company}} 
+                                            </span>
+                                        </li>
+                                    </ul>
+                                </td>
+                                <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                    <ul v-for="(snack, index) in snack.list" key="index">
+                                        <li> 
+                                            <span>
+                                                {{snack.year}} 
+                                            </span>
+                                        </li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <span
+                                    @click="updateSnack(snack.id)"
+                                    >
+                                    <button 
+                                    class="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">
+                                        Edit
+                                    </button>
+                                    </span>
+
+                                    <span
+                                    @click="deleteSnack(snack.id)"
+                                    >
+                                    <button class="inline-block px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out">Delete</button>
+                                    </span>   
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>    
+                
+                
+            </li>
+        </ul>
+
+<form
+        @submit.prevent="snack.isUpdate ? updateSnack() : submitSnack()"
+        class="w-full max-w-lg"
+    >
+    <div class="flex flex-wrap -mx-3 mb-6">
+        <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+                Name of Snack
+              </label>
+        <input type="text"
+        v-model = "snack.name"
+        placeholder="Snack"
+        class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"/>
+        </div>
+
+        <div class="w-full md:w-1/2 px-3">
+            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-last-name">
+                Company
+            </label>
+        <input type="text"
+        v-model="snack.company"
+        class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"/>
+        </div>
+
+        <div class="w-full md:w-1/2 px-3">
+            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-city">
+                Year
+            </label>
+        <input type="text"
+        v-model = "snack.year"
+        class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"/>
+    </div>
+
+    <div class="w-full md:w-1/2 px-3">
+        <button
+        type="submit"
+        class="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
+        >
+        {{ snack.isUpdate ? 'Edit' : 'Add New' }}
+        </button>
+    </div>
+
+    </div>
+    </form>
+</div>
+
+    <script src="./index.js"></script>
+</body>
+</html>
